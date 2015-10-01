@@ -1,0 +1,8 @@
+<h1>Welcome to the Forum</h1>
+
+<%= link_to "new", new_topic_path %>
+<br>
+<br>
+<% @topics.each do |c| %>
+<%= link_to c.title, {:action => 'show', :id => c.id} %>
+<% end %>
