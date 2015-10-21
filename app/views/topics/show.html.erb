@@ -1,10 +1,10 @@
 <p>
   <strong>Titel:</strong>
-  <%= @topics.title %>
+  <%= @topic.title %>
 </p>
  
  <h2>Comments</h2>
-<% @topics.comments.each do |comment| %>
+<% @topic.comments.each do |comment| %>
   <p>
     <strong>Commenter:</strong>
     <%= comment.commenter %>
@@ -17,7 +17,7 @@
 <% end %>
  
  <h2>Add a comment:</h2>
-<%= form_for([@topics, @topics.comments.build]) do |f| %>
+<%= form_for([@topic, @topic.comments.build]) do |f| %>
   <p>
     <%= f.label :commenter %><br>
     <%= f.text_field :commenter %>
@@ -32,7 +32,7 @@
 <% end %>
  
 
-<%= link_to 'Edit', edit_topic_path(@topics) %> |
+<%= link_to 'Edit', edit_topic_path(@topic) %> |
 <%= link_to 'Back', topics_path %>
 
 

@@ -1,25 +1,25 @@
 class TopicsController < ApplicationController
   def index
-  	@topics = Topic.all
+  	@topic = Topic.all
   end
 
   def show
-    @topics = Topic.find(params[:id])
+    @topic = Topic.find(params[:id])
   end
 
 	def new
-		 @topics = Topic.new
+		 @topic = Topic.new
 	end
 
   def edit
-    @topics = Topic.find(params[:id])
+    @topic = Topic.find(params[:id])
   end
 
   def create
-    @topics = Topic.new(params.require(:topic).permit(:title, :text))
-    @topics.save
+    @topic = Topic.new(params.require(:topic).permit(:title, :text))
+    @topic.save
     
-    if @topics.save
+    if @topic.save
       redirect_to topics_path
     else
       render 'new'
@@ -27,10 +27,10 @@ class TopicsController < ApplicationController
   end
 
   def update
-    @topics = Topic.find(params[:id])
+    @topic = Topic.find(params[:id])
  
-    if @topics.update(topics_params)
-    redirect_to @topics
+    if @topic.update(topic_params)
+    redirect_to @topic
     else
     render 'edit'
     end
@@ -38,10 +38,14 @@ class TopicsController < ApplicationController
 
 
   def destroy
-    @topics = Topic.find(params[:id])
-    @topics.destroy
+    @topic = Topic.find(params[:id])
+    @topic.destroy
  
     redirect_to topics_path
+  end
+
+  def topic_params
+    params.require(:topic).permit(:title, :text)
   end
 
 end

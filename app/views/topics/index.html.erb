@@ -4,7 +4,7 @@
 <br>
 <br>
 <h1>Listing topics</h1>
-<% @topics.each do |c| %>
+<% @topic.each do |c| %>
 <%= link_to c.title, {:action => 'show', :id => c.id} %>
 <% end %>
 
@@ -16,7 +16,7 @@
     <th colspan="3"></th>
   </tr>
  
-  <% @topics.each do |topic| %>
+  <% @topic.each do |topic| %>
     <tr>
       <td><%= topic.title %></td>
       <td><%= link_to 'Show', topic_path(topic) %></td>
