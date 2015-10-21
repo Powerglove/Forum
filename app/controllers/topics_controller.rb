@@ -3,7 +3,9 @@ class TopicsController < ApplicationController
   	@topics = Topic.all
   end
 
-  
+  def show
+    @topics = Topic.find(params[:id])
+  end
 
 	def new
 		 @topics = Topic.new
@@ -14,7 +16,7 @@ class TopicsController < ApplicationController
   end
 
   def create
-    @topics = Topic.new(params.require(:topic).permit(:title))
+    @topics = Topic.new(params.require(:topic).permit(:title, :text))
     @topics.save
     
     if @topics.save
@@ -34,8 +36,12 @@ class TopicsController < ApplicationController
     end
   end
 
-  def show
+
+  def destroy
     @topics = Topic.find(params[:id])
+    @topics.destroy
+ 
+    redirect_to topics_path
   end
 
 end
