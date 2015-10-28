@@ -1,8 +1,15 @@
 class CommentsController < ApplicationController
 	def create
-    @topics = Topic.find(params[:topic_id])
-    @comment = @topics.comments.create(comment_params)
+    @topic = Topic.find(params[:topic_id])
+    @comment = @topic.comments.create(comment_params)
     redirect_to topics_path(@topics)
+  end
+
+  def destroy
+    @topic = Topic.find(params[:topic_id])
+    @comment = @topic.comments.find(params[:id])
+    @comment.destroy
+    redirect_to topics_path(@topic)
   end
 
   private
