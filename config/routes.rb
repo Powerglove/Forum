@@ -1,6 +1,8 @@
 
 Rails.application.routes.draw do
  
+  get 'logins/create'
+
   resources :topics do
     resources :comments
   end

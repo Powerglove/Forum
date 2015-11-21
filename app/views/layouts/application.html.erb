@@ -7,7 +7,12 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
+	<% flash.each do |name, msg| -%>
+      <%= content_tag :div, msg, class: name %>
+      <% if flash[:just_signed_up] %>
+  			<p class="welcome">Welcome to our site!</p>
+			<% end %>
+    <% end -%>
 <%= yield %>
 
 </body>
