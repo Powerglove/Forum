@@ -1,17 +1,26 @@
 class UsersController < ApplicationController
   def new
-     @topic = Topic.new
+     @user = User.new
   end
 
   def create
-    @topic = Topic.new(params.require(:topic).permit(:title, :text))
-    @topic.save
+    @user = User.new(params.[:user])
+    @user.save
 
-    if @topic.save
-      redirect_to topics_path
+    if @user.save
+      redirect_to @user
     else
       render 'new'
     end
   end
 
+  def index
+    if params[:status] == "activated"
+      @users = User.activated
+    else
+      @users = User.inactivated
+    end
+  end
+
+ 
 end
